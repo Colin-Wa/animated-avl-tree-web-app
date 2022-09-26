@@ -782,7 +782,7 @@ function App() {
     else
     {
       current_tree!.add(Number(add_term));
-      current_tree!.canvas_context.clearRect(0,0,current_tree!.canvas_context.canvas.width, current_tree!.canvas_context.canvas.height)
+      current_tree!.canvas_context.clearRect(0,0,current_tree!.canvas_context.canvas.width, current_tree!.canvas_context.canvas.height);
       current_tree!.mark_undisplayed(current_tree?.get_head()!);
       setAddTerm("");
     }
@@ -805,7 +805,6 @@ function App() {
 
   return (
     <div className="App">
-      <canvas id="canvas" width="1920" height="870"></canvas>
       <div id="form-container">
         <form onSubmit={submitAddForm} id="form-1">
           <div id="label-1"><label>Add Node:</label></div>
@@ -835,6 +834,14 @@ let defined = false;
 let current_tree: AVLTree|null;
 let steps_per_animation: number;
 let draw_every_this_long: number = 50;
+
+/* Create canvas with specific height and width to be referenced with later */
+
+let canvas_creation = document.createElement("canvas");
+canvas_creation.id = "canvas";
+canvas_creation.width = window.innerWidth;
+canvas_creation.height = (window.innerHeight * 0.90);
+document.body.appendChild(canvas_creation);
 
 function driver()
 {
